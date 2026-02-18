@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Lager</title>
+
+  <!-- Favicon -->
+  <link rel="icon" type="image/png" href="favicon.png">
+
+  <!-- Apple Touch Icon -->
+  <link rel="apple-touch-icon" href="apple-touch-icon.png">
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <style>
+    body {
+      margin: 0;
+      background: black;
+      color: white;
+      font-family: -apple-system, BlinkMacSystemFont, sans-serif;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
+      text-align: center;
+    }
+
+    .message {
+      max-width: 90%;
+    }
+
+    h1 {
+      font-weight: 500;
+      margin-bottom: 10px;
+    }
+
+    p {
+      opacity: 0.7;
+    }
+  </style>
+</head>
+<body>
+
+<div class="message" id="message" style="display:none;">
+  <h1>content not available</h1>
+  <p id="returnTime"></p>
+</div>
+
+<script>
+  // === SETTINGS ===
+  const targetURL = "https://example.com"; // <-- PUT YOUR REAL URL HERE
+
+  const now = new Date();
+  const hour = now.getHours();
+  const minutes = now.getMinutes();
+
+  // Block between 1:00 AM and 2:00 AM
+  if (hour === 1) {
+
+    // Calculate minutes until 2:00 AM
+    const remainingMinutes = 60 - minutes;
+
+    document.getElementById("message").style.display = "block";
+    document.getElementById("returnTime").innerText =
+      "come back around in " + remainingMinutes + " minute" + 
+      (remainingMinutes !== 1 ? "s" : "");
+
+  } else {
+    // Redirect immediately
+    window.location.replace(targetURL);
+  }
+</script>
+
+</body>
+</html>

@@ -4,10 +4,7 @@
   <meta charset="UTF-8">
   <title>Lager</title>
 
-  <!-- Favicon -->
   <link rel="icon" type="image/png" href="favicon.png">
-
-  <!-- Apple Touch Icon -->
   <link rel="apple-touch-icon" href="apple-touch-icon.png">
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -22,52 +19,53 @@
       align-items: center;
       justify-content: center;
       height: 100vh;
+    }
+
+    .blocked {
+      display: none;
       text-align: center;
     }
 
-    .message {
-      max-width: 90%;
+    .image-container {
+      display: none;
     }
 
-    h1 {
-      font-weight: 500;
-      margin-bottom: 10px;
+    img {
+      max-width: 100%;
+      max-height: 100vh;
     }
 
-    p {
-      opacity: 0.7;
-    }
+    h1 { margin-bottom: 10px; }
+    p { opacity: 0.7; }
   </style>
 </head>
 <body>
 
-<div class="message" id="message" style="display:none;">
-  <h1>content not available</h1>
-  <p id="returnTime"></p>
+<div class="blocked" id="blocked">
+  <div>
+    <h1>content not available</h1>
+    <p id="returnTime"></p>
+  </div>
+</div>
+
+<div class="image-container" id="content">
+  <img src="annie_chan.png" alt="Lager">
 </div>
 
 <script>
-  // === SETTINGS ===
-  const targetURL = "https://images-wixmp-ed30a86b8c4ca887773594c2.wixmp.com/f/1a819d0b-8de8-4da7-853d-c9e35afe6de5/d9l4kj0-01666451-0336-476a-a37a-f02bbb8919c4.png/v1/fit/w_596,h_900,q_70,strp/annie_chan_by_dctb_d9l4kj0-375w-2x.jpg?token=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ1cm46YXBwOjdlMGQxODg5ODIyNjQzNzNhNWYwZDQxNWVhMGQyNmUwIiwiaXNzIjoidXJuOmFwcDo3ZTBkMTg4OTgyMjY0MzczYTVmMGQ0MTVlYTBkMjZlMCIsIm9iaiI6W1t7ImhlaWdodCI6Ijw9OTAwIiwicGF0aCI6Ii9mLzFhODE5ZDBiLThkZTgtNGRhNy04NTNkLWM5ZTM1YWZlNmRlNS9kOWw0a2owLTAxNjY2NDUxLTAzMzYtNDc2YS1hMzdhLWYwMmJiYjg5MTljNC5wbmciLCJ3aWR0aCI6Ijw9NTk2In1dXSwiYXVkIjpbInVybjpzZXJ2aWNlOmltYWdlLm9wZXJhdGlvbnMiXX0.J0A858hh33btPz-Z0uf5CfLDYPJerX1EzEwrnu_vHp4"; 
-
   const now = new Date();
   const hour = now.getHours();
   const minutes = now.getMinutes();
 
-  // Block between 1:00 AM and 2:00 AM
   if (hour === 1) {
-
-    // Calculate minutes until 2:00 AM
     const remainingMinutes = 60 - minutes;
 
-    document.getElementById("message").style.display = "block";
+    document.getElementById("blocked").style.display = "flex";
     document.getElementById("returnTime").innerText =
-      "come back around in " + remainingMinutes + " minute" + 
+      "come back around in " + remainingMinutes + " minute" +
       (remainingMinutes !== 1 ? "s" : "");
-
   } else {
-    // Redirect immediately
-    window.location.replace(targetURL);
+    document.getElementById("content").style.display = "block";
   }
 </script>
 
